@@ -11,6 +11,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
 
 import com.hardstonegames.canyonbunny.util.CameraHelper;
 
@@ -34,6 +36,9 @@ public class WorldController extends InputAdapter{
 	}
 	
 	private void initTestObjects(){
+		/*  
+		 * *** PREVIOUS CODE (BEFORE MANAGE ASSETS) **
+		 * 
 		// Create new array for 5 sprites
 		testSprites = new Sprite[5];
 		// Create empty POT-sized Pixma with  8 bit RGBA pixel data
@@ -44,6 +49,31 @@ public class WorldController extends InputAdapter{
 		Texture texture = new Texture(pixmap);
 		for(int i = 0; i < testSprites.length; i++) {
 			Sprite spr = new Sprite(texture);
+			// Define sprite size to be 1m x 1m in game world
+			spr.setSize(1, 1);
+			// Set origin to sprite center
+			spr.setOrigin(spr.getWidth() / 2.0f, spr.getHeight() / 2.0f);
+			// Calculate random positions for sprite
+			float radomX = MathUtils.random(-2.0f, 2.0f);
+			float radomY = MathUtils.random(-2.0f, 2.0f);
+			spr.setPosition(radomX, radomY);
+			// Put the new sprite into array
+			testSprites[i] = spr;
+		}
+		// Set first sprite as selected one
+		selectedSprite = 0;
+		*/
+		
+		// Create new array for 5 sprites
+		testSprites = new Sprite[5];
+		// Create a list of texture regions
+		Array<TextureRegion> regions = new Array<TextureRegion>();
+		regions.add(Assets.instance.bunny.head);
+		regions.add(Assets.instance.feather.feather);
+		regions.add(Assets.instance.goldCoin.goldCoin);
+		// Create new sprites using a random texture region
+		for(int i = 0; i < testSprites.length; i++) {
+			Sprite spr = new Sprite(regions.random());
 			// Define sprite size to be 1m x 1m in game world
 			spr.setSize(1, 1);
 			// Set origin to sprite center
