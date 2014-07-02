@@ -27,9 +27,10 @@ public class CanyonBunnyMain implements ApplicationListener {
 	@Override
 	public void render() { // NOTE: 1- UPDATE; 2- RENDER
 		
-		if(!paused)
+		if(!paused) {
 			// Update game world by the time that has passed since last rendered frame
 			worldController.update(Gdx.graphics.getDeltaTime());
+		}
 		
 		// Sets the clear screen color to: Cornflower Blue (RGMA) (range: 0 >= x <=1)
 			//Gdx.gl.glClearColor(0x64/255.0f, 0x95/255.0f, 0xED/255.0f, 0xFF/255.0f); // Hex notation
