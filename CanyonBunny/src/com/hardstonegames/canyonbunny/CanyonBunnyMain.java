@@ -3,7 +3,9 @@ package com.hardstonegames.canyonbunny;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL10;
+import com.hardstonegames.canyonbunny.game.Assets;
 import com.hardstonegames.canyonbunny.game.WorldController;
 import com.hardstonegames.canyonbunny.game.WorldRenderer;
 
@@ -18,6 +20,8 @@ public class CanyonBunnyMain implements ApplicationListener {
 	public void create() {		
 		// Set LibGDX log level to DEBUG
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
+		// Load assets
+		Assets.instance.init(new AssetManager());
 		// Initialize the controller and the renderer
 		worldController = new WorldController();
 		worldRenderer = new WorldRenderer(worldController);
@@ -49,6 +53,7 @@ public class CanyonBunnyMain implements ApplicationListener {
 	@Override
 	public void dispose() {
 		worldRenderer.dispose();
+		Assets.instance.dispose();
 	}
 
 	@Override
@@ -58,6 +63,7 @@ public class CanyonBunnyMain implements ApplicationListener {
 
 	@Override
 	public void resume() {
+		Assets.instance.init(new AssetManager());
 		paused = false;
 	}
 }
