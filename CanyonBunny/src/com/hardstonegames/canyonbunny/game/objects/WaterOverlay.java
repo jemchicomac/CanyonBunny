@@ -15,7 +15,7 @@ public class WaterOverlay extends AbstractGameObject {
 	}
 	
 	private void init() {
-		dimension.set(lenght * 10, 3);
+		dimension.set(length * 10, 3);
 		regWaterOverlay = Assets.instance.levelDecorator.waterOverlay;
 		origin.x = -dimension.x / 2;
 	}
