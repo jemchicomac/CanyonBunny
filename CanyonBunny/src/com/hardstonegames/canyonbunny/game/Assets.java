@@ -10,6 +10,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 
+/**
+ * This class manages all the assets that teh game will have.
+ * This class have some inner classes who describes what resources
+ * (images, audio,...) form each object of the game world
+ * 
+ * @author ander
+ *
+ */
 public class Assets implements Disposable, AssetErrorListener {
 	
 	public static final String TAG = Assets.class.getName();
