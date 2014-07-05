@@ -59,6 +59,7 @@ public class WorldController extends InputAdapter{
 	
 	public void update(float deltaTime){
 		handleDebugInput(deltaTime);
+		level.update(deltaTime);
 		cameraHelper.update(deltaTime);
 	}
 	
