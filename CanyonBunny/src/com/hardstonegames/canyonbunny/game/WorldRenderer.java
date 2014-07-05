@@ -28,18 +28,10 @@ public class WorldRenderer implements Disposable{
 	}
 	
 	public void render() {
-		rederTestObjects();
+		
 	}
 	
-	private void rederTestObjects() {
-		worldController.cameraHelper.applyTo(camera);
-		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
-		for(Sprite sprite: worldController.testSprites)
-			sprite.draw(batch);
-		batch.end();
-	}
-
+	
 	public void resize(int width, int height) {
 		camera.viewportWidth = (Constants.VIEWPORT_HEIGHT / height) * width;
 		camera.update();
