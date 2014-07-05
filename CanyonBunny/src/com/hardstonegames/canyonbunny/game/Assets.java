@@ -3,6 +3,7 @@ package com.hardstonegames.canyonbunny.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Disposable;
 import com.hardstonegames.canyonbunny.util.Constants;
@@ -11,17 +12,15 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 
 /**
- * This class manages all the assets that teh game will have.
+ * This class manages all the assets that the game will have.
  * This class have some inner classes who describes what resources
  * (images, audio,...) form each object of the game world
- * 
- * @author ander
- *
  */
 public class Assets implements Disposable, AssetErrorListener {
 	
 	public static final String TAG = Assets.class.getName();
 	public static final Assets instance = new Assets();
+	
 	private AssetManager assetManager;
 	
 	public AssetBunny bunny;
@@ -29,6 +28,7 @@ public class Assets implements Disposable, AssetErrorListener {
 	public AssetGoldCoin goldCoin;
 	public AssetFeather feather;
 	public AssetLevelDecoration levelDecorator;
+	public AssetFonts fonts;
 	
 	// Singleton in eager mode
 	private Assets() {}
@@ -85,6 +85,27 @@ public class Assets implements Disposable, AssetErrorListener {
 		}
 	}
 	
+	public class AssetFonts {
+		public final BitmapFont defaultSmall;
+		public final BitmapFont defaultNormal;
+		public final BitmapFont defaultBig;
+		
+		public AssetFonts() {
+			// Create these fonts using Libgdx's 15px bitamp font
+			defaultSmall = new BitmapFont(Gdx.files.internal("images/arial-15.ftn"), true);
+			defaultNormal = new BitmapFont(Gdx.files.internal("images/arial-15.ftn"), true);
+			defaultBig = new BitmapFont(Gdx.files.internal("images/arial-15.ftn"), true);
+			// Set font sizes
+			defaultSmall.setScale(0.75f);
+			defaultNormal.setScale(1.0f);
+			defaultBig.setScale(2.0f);
+			// Enable linear testure filtering for smooth fonts
+			defaultSmall.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
+			defaultNormal.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
+			defaultBig.getRegion().getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		}
+	}
+	
 	public void init(AssetManager assetManager) {
 		this.assetManager = assetManager;
 		// Set assets manager error handler
@@ -109,11 +130,15 @@ public class Assets implements Disposable, AssetErrorListener {
 		goldCoin = new AssetGoldCoin(atlas);
 		feather = new AssetFeather(atlas);
 		levelDecorator = new AssetLevelDecoration(atlas);
+		fonts = new AssetFonts();
 	}
 
 	@Override
 	public void dispose() {
 		assetManager.dispose();
+		fonts.defaultBig.dispose();
+		fonts.defaultNormal.dispose();
+		fonts.defaultSmall.dispose();
 	}
 	
 	@Override
