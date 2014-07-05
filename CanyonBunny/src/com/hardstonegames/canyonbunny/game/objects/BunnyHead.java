@@ -67,9 +67,6 @@ public class BunnyHead extends AbstractGameObject{
 				break;
 				
 			case FALLING: // Falling down
-			
-				break;
-				
 			case JUMP_FALLING: // FAlling down
 				
 				if(jumpKeyPressed && hasFeatherPowerup) {
