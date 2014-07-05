@@ -11,12 +11,18 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
+import com.hardstonegames.canyonbunny.game.objects.Rock;
+import com.hardstonegames.canyonbunny.util.Constants;
 
 import com.hardstonegames.canyonbunny.util.CameraHelper;
 
 public class WorldController extends InputAdapter{
 	
 	private static final String TAG = WorldController.class.getName(); // For debugging
+	
+	public Level level;
+	public int lives;
+	public int score;
 	
 	public CameraHelper cameraHelper;
 	
@@ -27,6 +33,13 @@ public class WorldController extends InputAdapter{
 	private void init() {
 		Gdx.input.setInputProcessor(this);
 		cameraHelper = new CameraHelper();
+		lives = Constants.LIVES_START;
+		initLevel();
+	}
+	
+	private void initLevel() {
+		score = 0;
+		level = new Level(Constants.LEVEL_01);
 	}
 	
 	private Pixmap createProceduralPixmap(int width, int height) {
