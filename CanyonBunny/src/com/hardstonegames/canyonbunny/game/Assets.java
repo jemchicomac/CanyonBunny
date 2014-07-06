@@ -92,9 +92,9 @@ public class Assets implements Disposable, AssetErrorListener {
 		
 		public AssetFonts() {
 			// Create these fonts using Libgdx's 15px bitamp font
-			defaultSmall = new BitmapFont(Gdx.files.internal("images/arial-15.ftn"), true);
-			defaultNormal = new BitmapFont(Gdx.files.internal("images/arial-15.ftn"), true);
-			defaultBig = new BitmapFont(Gdx.files.internal("images/arial-15.ftn"), true);
+			defaultSmall = new BitmapFont(Gdx.files.internal("images/arial-15.fnt"), true);
+			defaultNormal = new BitmapFont(Gdx.files.internal("images/arial-15.fnt"), true);
+			defaultBig = new BitmapFont(Gdx.files.internal("images/arial-15.fnt"), true);
 			// Set font sizes
 			defaultSmall.setScale(0.75f);
 			defaultNormal.setScale(1.0f);

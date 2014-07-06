@@ -58,7 +58,7 @@ public class Level {
 	
 	private void init(String filename) {
 		//Player character
-		bunnyHead = null;
+		bunnyHead = new BunnyHead();
 		
 		// Objects
 		rocks = new Array<Rock>();
